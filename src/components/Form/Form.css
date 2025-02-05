@@ -1,0 +1,44 @@
+.addEmployeeForm {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    font-size: 18px;
+    font-weight: bold;
+    margin-left: 10%;
+}
+
+.input-group {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.input-group label {
+    width: 20%;
+}
+
+.input-group input {
+    width: 30%;
+    padding: 10px 1rem;
+    outline: none;
+    border: 2px solid #333;
+    border-radius: 1rem;
+}
+
+.addEmployeeForm button {
+    width: 20%;
+    padding: 10px;
+    margin-left: 13rem;
+    background-color: rgb(68, 179, 118);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.addEmployeeForm button:hover {
+    opacity: 0.8;
+}
