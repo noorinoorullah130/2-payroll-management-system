@@ -1,7 +1,28 @@
-.dashboard {
-    width: 80%;
-    margin-left: 15%;
-    margin-top: 5%;
-    padding: 2rem 3rem;
+.dashboard .main-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.about-me {
+    display: flex;
+    flex-direction: column;
+}
+
+.about-me h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+}
+
+.about-me p {
+    font-size: 18px;
+}
+
+.dashboard .footer {
+    position: fixed;
+    right: 30%;
+    bottom: 10px;
+    text-align: center;
 }
 

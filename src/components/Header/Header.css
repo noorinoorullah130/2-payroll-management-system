@@ -5,11 +5,16 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 1rem;
-    background-color: #212121;
+    background-color: #9670d5;
+    color: white;
     position: fixed;
     top: 0;
     left: 0;
     border-bottom: 1px solid white;
+}
+
+.header h1 {
+    font-size: 2.5rem;
 }
 
 .header .search {

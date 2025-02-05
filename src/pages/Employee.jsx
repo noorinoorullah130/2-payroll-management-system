@@ -6,6 +6,8 @@ const Employee = () => {
     return (
         <div className="employee">
             <h1>Employee Page</h1>
+            <div className="main-content">
+            </div>
         </div>
     )
 };
