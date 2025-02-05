@@ -1,69 +1,112 @@
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import "./CSS/Employee.css";
 import Form from '../components/Form/Form';
 
+
 const Employee = () => {
 
-    const [employees, setEmployees] = useState([
-        {
-            id: 1,
-            account: 75382538,
-            name: "Noorullah",
-            fatherName: "Suhailbad Shah",
-            grade: "4th",
-        }
-    ]);
+    let id = 1;
 
+    const [employees, setEmployees] = useState([]);
     const [showForm, setShowForm] = useState(false);
+    const [selectedEmployee, setSelectedEmployee] = useState(null);
+    const [isEditing, setIsEditing] = useState(false);
 
+    useEffect(() => {
+        const storedEmployees = JSON.parse(localStorage.getItem("employees")) || [];
+        setEmployees(storedEmployees);
+    }, []);
+
+    
     const toggleForm = () => {
         setShowForm(!showForm);
+        setIsEditing(false);
+    }
+
+
+    const handleDelete = (index) => {
+        const storedEmployees = employees.filter((_, i) => index !== i);
+        localStorage.setItem("employees", JSON.stringify(storedEmployees));
+        setEmployees(storedEmployees);
+    }
+
+    
+    const handleEdit = (emp) => {
+        setSelectedEmployee(emp);
+        setIsEditing(true);
+        setShowForm(true);
     }
 
     return (
         <div className="employee">
             <div className="emp-header">
-                <h1>Employee List</h1>
+                <h1>
+                    {
+                        showForm ? "Add New Employee Form" : "Employee List"
+                    }
+                </h1>
                 <div>
-                    <button onClick={() => toggleForm()}>Add New Employee</button>
+                    <button onClick={() => toggleForm()}>
+                        {
+                            showForm ? "Employee List" : "Add New Employee"
+                        }
+                    </button>
                     <button>Generate Attendance Report</button>
                 </div>
             </div>
 
             {
-                showForm ? <Form /> : 
-                    <div className="main-content">
-                        <table>
-                            <thead>
+                showForm 
+                ? 
+                <Form 
+                    setEmployees={setEmployees}
+                    selectedEmployee={selectedEmployee}
+                    isEditing={isEditing}
+                    setIsEditing={setIsEditing}
+                /> 
+                : 
+                <div className="main-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>No #</th>
+                                <th>Account Number</th>
+                                <th>Name</th>
+                                <th>Father Name</th>
+                                <th>Job Title</th>
+                                <th>Grade</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                employees.length > 0 
+                                ?
+                                employees.map((emp, i) => (
+                                    <tr key={id++}>
+                                        <td>{id}</td>
+                                        <td>{emp.account}</td>
+                                        <td>{emp.name}</td>
+                                        <td>{emp.fName}</td>
+                                        <td>{emp.jobTitle}</td>
+                                        <td>{emp.grade}</td>
+                                        <td className="action-btns">
+                                            <button onClick={() => handleEdit(emp)}>
+                                                Edit
+                                            </button>
+                                            <button onClick={() => {handleDelete(i)}}>Delete</button>
+                                        </td>
+                                    </tr>
+                                ))
+                                :
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Account #</th>
-                                    <th>Name</th>
-                                    <th>Father Name</th>
-                                    <th>Grade</th>
-                                    <th>Actions</th>
+                                    <td colSpan={"7"}>No employee found.</td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                {
-                                    employees.map((emp, i) => (
-                                        <tr key={i}>
-                                            <td>{emp.id}</td>
-                                            <td>{emp.account}</td>
-                                            <td>{emp.name}</td>
-                                            <td>{emp.fatherName}</td>
-                                            <td>{emp.grade}</td>
-                                            <td className="action-btns">
-                                                <button>Edit</button>
-                                                <button>Delete</button>
-                                            </td>
-                                        </tr>
-                                    ))
-                                }
-                            </tbody>
-                        </table>
-                    </div> 
+                            }
+                        </tbody>
+                    </table>
+                </div> 
             }
         </div>
     )
