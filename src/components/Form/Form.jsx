@@ -62,7 +62,11 @@ const Form = ({setEmployees, selectedEmployee, isEditing, setIsEditing}) => {
     return (
         <div className="addNewEmployee">
             <form className="addEmployeeForm" id="form" onSubmit={handleSubmit}>
-                <h2>Add New Employee</h2>
+                <h2>
+                    {
+                        isEditing ? "Edit Employee" : "Add New Employee"
+                    }
+                </h2>
                 <div className="input-group">
                     <label>Name:</label>
                     <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Enter employee name" required />
