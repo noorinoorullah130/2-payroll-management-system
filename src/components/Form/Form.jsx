@@ -93,7 +93,7 @@ const Form = ({ setEmployees, selectedEmployee, isEditing, setIsEditing }) => {
                 <div className="input-group">
                     <label>Grade:</label>
                     <input
-                        type="text"
+                        type="Number"
                         value={grade}
                         onChange={(e) => setGrade(e.target.value)}
                         min="1"
@@ -105,7 +105,7 @@ const Form = ({ setEmployees, selectedEmployee, isEditing, setIsEditing }) => {
                 <div className="input-group">
                     <label>Account Number:</label>
                     <input
-                        type="text"
+                        type="Number"
                         value={account}
                         onChange={(e) => setAccount(e.target.value)}
                         placeholder="Enter account number"

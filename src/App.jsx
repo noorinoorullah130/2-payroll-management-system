@@ -6,6 +6,7 @@ import Employee from "./pages/EmployeeList.jsx";
 import AttendanceReport from "./pages/AttendanceReport.jsx";
 import M41Report from "./pages/M41Report.jsx";
 import BankReport from "./pages/BankReport.jsx";
+import AttendanceReportForm from "./components/AttendanceReportForm/AttendanceReportForm.jsx";
 
 function App() {
     return (
@@ -22,6 +23,7 @@ function App() {
                     />
                     <Route path="/m41report" element={<M41Report />} />
                     <Route path="/bankreport" element={<BankReport />} />
+                    <Route path="/attendancereportform" element={<AttendanceReportForm />} />
                 </Routes>
             </BrowserRouter>
         </div>

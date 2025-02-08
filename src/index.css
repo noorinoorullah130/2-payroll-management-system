@@ -28,7 +28,8 @@ a {
 .attendance-report,
 .m41-report,
 .bank-report,
-.addNewEmployee {
+.addNewEmployee,
+.attendance-report-form {
     width: 80%;
     margin-left: 18%;
     margin-top: 5%;

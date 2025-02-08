@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./CSS/Employee.css";
 import Form from "../components/Form/Form";
+import { useNavigate } from "react-router-dom";
 
 const Employee = () => {
     let id = 1;
@@ -33,6 +34,8 @@ const Employee = () => {
         setShowForm(true);
     };
 
+    const navigate = useNavigate();
+
     return (
         <div className="employee">
             <div className="emp-header">
@@ -41,7 +44,12 @@ const Employee = () => {
                     <button onClick={() => toggleForm()}>
                         {showForm ? "Employee List" : "Add New Employee"}
                     </button>
-                    <button>Generate Attendance Report</button>
+                    <button
+                        onClick={() => navigate("/attendancereportform")}
+                        nav
+                    >
+                        Generate Attendance Report
+                    </button>
                 </div>
             </div>
 
@@ -69,8 +77,8 @@ const Employee = () => {
                         <tbody>
                             {employees.length > 0 ? (
                                 employees.map((emp, i) => (
-                                    <tr key={id++}>
-                                        <td>{id}</td>
+                                    <tr key={i}>
+                                        <td>{i + 1}</td>
                                         <td>{emp.account}</td>
                                         <td>{emp.name}</td>
                                         <td>{emp.fName}</td>
