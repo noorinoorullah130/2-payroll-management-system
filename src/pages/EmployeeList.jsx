@@ -1,11 +1,8 @@
-
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import "./CSS/Employee.css";
-import Form from '../components/Form/Form';
-
+import Form from "../components/Form/Form";
 
 const Employee = () => {
-
     let id = 1;
 
     const [employees, setEmployees] = useState([]);
@@ -14,58 +11,48 @@ const Employee = () => {
     const [isEditing, setIsEditing] = useState(false);
 
     useEffect(() => {
-        const storedEmployees = JSON.parse(localStorage.getItem("employees")) || [];
+        const storedEmployees =
+            JSON.parse(localStorage.getItem("employees")) || [];
         setEmployees(storedEmployees);
     }, []);
 
-    
     const toggleForm = () => {
         setShowForm(!showForm);
         setIsEditing(false);
-    }
-
+    };
 
     const handleDelete = (index) => {
         const storedEmployees = employees.filter((_, i) => index !== i);
         localStorage.setItem("employees", JSON.stringify(storedEmployees));
         setEmployees(storedEmployees);
-    }
+    };
 
-    
     const handleEdit = (emp) => {
         setSelectedEmployee(emp);
         setIsEditing(true);
         setShowForm(true);
-    }
+    };
 
     return (
         <div className="employee">
             <div className="emp-header">
-                <h1>
-                    {
-                        showForm ? "Add New Employee Form" : "Employee List"
-                    }
-                </h1>
+                <h1>{showForm ? "Add New Employee Form" : "Employee List"}</h1>
                 <div>
                     <button onClick={() => toggleForm()}>
-                        {
-                            showForm ? "Employee List" : "Add New Employee"
-                        }
+                        {showForm ? "Employee List" : "Add New Employee"}
                     </button>
                     <button>Generate Attendance Report</button>
                 </div>
             </div>
 
-            {
-                showForm 
-                ? 
-                <Form 
+            {showForm ? (
+                <Form
                     setEmployees={setEmployees}
                     selectedEmployee={selectedEmployee}
                     isEditing={isEditing}
                     setIsEditing={setIsEditing}
-                /> 
-                : 
+                />
+            ) : (
                 <div className="main-content">
                     <table>
                         <thead>
@@ -80,9 +67,7 @@ const Employee = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {
-                                employees.length > 0 
-                                ?
+                            {employees.length > 0 ? (
                                 employees.map((emp, i) => (
                                     <tr key={id++}>
                                         <td>{id}</td>
@@ -92,24 +77,32 @@ const Employee = () => {
                                         <td>{emp.jobTitle}</td>
                                         <td>{emp.grade}</td>
                                         <td className="action-btns">
-                                            <button onClick={() => handleEdit(emp)}>
+                                            <button
+                                                onClick={() => handleEdit(emp)}
+                                            >
                                                 Edit
                                             </button>
-                                            <button onClick={() => {handleDelete(i)}}>Delete</button>
+                                            <button
+                                                onClick={() => {
+                                                    handleDelete(i);
+                                                }}
+                                            >
+                                                Delete
+                                            </button>
                                         </td>
                                     </tr>
                                 ))
-                                :
+                            ) : (
                                 <tr>
                                     <td colSpan={"7"}>No employee found.</td>
                                 </tr>
-                            }
+                            )}
                         </tbody>
                     </table>
-                </div> 
-            }
+                </div>
+            )}
         </div>
-    )
+    );
 };
 
-export default Employee
+export default Employee;

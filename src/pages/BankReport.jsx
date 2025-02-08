@@ -1,14 +1,13 @@
-import React from 'react';
+import React from "react";
 import "./CSS/BankReport.css";
 
 const BankReport = () => {
     return (
         <div className="bank-report">
             <h1>Bank Reports</h1>
-            <div className="main-content">
-            </div>
+            <div className="main-content"></div>
         </div>
-    )
+    );
 };
 
-export default BankReport
+export default BankReport;
