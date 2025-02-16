@@ -19,6 +19,7 @@ const AttendanceReportForm = () => {
                 presentDays: 30,
                 absentDays: "",
                 considerations: "",
+                selected: false
             };
         });
 
@@ -67,6 +68,7 @@ const AttendanceReportForm = () => {
                         <th className="small-cells">Present Days</th>
                         <th className="small-cells">Absent Days</th>
                         <th>Considerations</th>
+                        <th>Selected</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -120,6 +122,21 @@ const AttendanceReportForm = () => {
                                         )
                                     }
                                     placeholder="Any Considerations"
+                                />
+                            </td>
+                            <td>
+                                <input
+                                    type="checkbox"
+                                    value={
+                                        empStatus[emp.id]?.selected || ""
+                                    }
+                                    onChange={(e) =>
+                                        handleInputChange(
+                                            emp.id,
+                                            "selected",
+                                            e.target.value
+                                        )
+                                    }
                                 />
                             </td>
                         </tr>

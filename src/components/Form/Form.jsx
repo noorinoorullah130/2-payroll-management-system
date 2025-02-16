@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Form.css";
+import SuccessPopUp from "../SuccessPopUp/SuccessPopUp";
 
 const Form = ({ setEmployees, selectedEmployee, isEditing, setIsEditing }) => {
     const [name, setName] = useState("");
@@ -7,6 +8,7 @@ const Form = ({ setEmployees, selectedEmployee, isEditing, setIsEditing }) => {
     const [jobTitle, setJobTitle] = useState("");
     const [grade, setGrade] = useState("");
     const [account, setAccount] = useState("");
+    const [showSuccessMsg, setShowSuccessMsg] = useState(false);
 
     useEffect(() => {
         if (isEditing && selectedEmployee) {
@@ -54,7 +56,16 @@ const Form = ({ setEmployees, selectedEmployee, isEditing, setIsEditing }) => {
         setJobTitle("");
         setGrade("");
         setAccount("");
+        
+        handleSuccessMsg();
     };
+
+    const handleSuccessMsg = () => {
+        setShowSuccessMsg(true);
+        setTimeout(() => {
+            setShowSuccessMsg(false);
+        }, 3000);
+    }
 
     return (
         <div className="addNewEmployee">
@@ -114,6 +125,10 @@ const Form = ({ setEmployees, selectedEmployee, isEditing, setIsEditing }) => {
                 </div>
                 <button type="submit">Add Employee</button>
             </form>
+
+            {
+                showSuccessMsg && <SuccessPopUp />
+            }
         </div>
     );
 };
