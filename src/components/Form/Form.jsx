@@ -127,7 +127,7 @@ const Form = ({ setEmployees, selectedEmployee, isEditing, setIsEditing }) => {
             </form>
 
             {
-                showSuccessMsg && <SuccessPopUp />
+                showSuccessMsg && <SuccessPopUp message="Successfully Added!" />
             }
         </div>
     );

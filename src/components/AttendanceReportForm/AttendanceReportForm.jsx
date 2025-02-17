@@ -6,6 +6,12 @@ const AttendanceReportForm = () => {
     const [employees, setEmployees] = useState([]);
     const [empStatus, setEmpStatus] = useState({});
     const navigate = useNavigate();
+    const [saveAttendance, setSaveAttendance] = useState("");
+    const [month, setMonth] = useState("");
+    const [year, setYear] = useState("");
+    const [errorMonthMsg, setErrorMonthMsg] = useState(false);
+    const [errorYearMsg, setErrorYearMsg] = useState(false);
+    const [errorSelectedEmpMsg, setErrorSeletedEmpMsg] = useState(false);
 
     useEffect(() => {
         const storedEmployees =
@@ -19,7 +25,7 @@ const AttendanceReportForm = () => {
                 presentDays: 30,
                 absentDays: "",
                 considerations: "",
-                selected: false
+                selected: false,
             };
         });
 
@@ -36,23 +42,71 @@ const AttendanceReportForm = () => {
         }));
     };
 
+    const isAnyEmployeeSelected = Object.values(empStatus).some(
+        (emp) => emp.selected
+    );
+
+    const handleSaveAttendanceReport = () => {
+        if (!month) {
+            setErrorMonthMsg(true);
+        } else if (!year) {
+            setErrorYearMsg(true);
+            setErrorMonthMsg(false);
+        } else if (!isAnyEmployeeSelected) {
+            setErrorSeletedEmpMsg(true);
+            setErrorYearMsg(false);
+        } else {
+            setErrorMonthMsg(false);
+            setErrorYearMsg(false);
+            setErrorSeletedEmpMsg(false);
+            setMonth("");
+            setYear("");
+            console.log(month, year);
+            console.log(empStatus);
+            console.log(isAnyEmployeeSelected);
+        }
+    };
+
     return (
         <div className="attendance-report-form">
             <div className="report-header">
                 <h1>Attendance Report Form</h1>
                 <div className="header-input-group">
                     <label htmlFor="month">Select Month:</label>
-                    <input type="text" id="month" placeholder="Select Month" />
+                    <input
+                        type="text"
+                        id="month"
+                        value={month}
+                        onChange={(e) => setMonth(e.target.value)}
+                        placeholder="Select Month"
+                    />
+                    {errorMonthMsg && (
+                        <p className="error-msg">Please Enter Month</p>
+                    )}
                 </div>
                 <div className="header-input-group">
-                    <label htmlFor="month">Select Year:</label>
-                    <input type="number" id="month" placeholder="Select Year" />
+                    <label htmlFor="year">Select Year:</label>
+                    <input
+                        type="number"
+                        id="year"
+                        value={year}
+                        onChange={(e) => setYear(e.target.value)}
+                        placeholder="Select Year"
+                    />
+                    {errorYearMsg && (
+                        <p className="error-msg">Please Enter Year</p>
+                    )}
                 </div>
                 <div className="btns">
-                    <button>Save</button>
+                    <button onClick={handleSaveAttendanceReport}>Save</button>
                     <button onClick={() => navigate("/employee")}>
                         Cancel
                     </button>
+                    {errorSelectedEmpMsg && (
+                        <p className="error-msg">
+                            Please select at least one Employee!
+                        </p>
+                    )}
                 </div>
             </div>
 
@@ -127,14 +181,12 @@ const AttendanceReportForm = () => {
                             <td>
                                 <input
                                     type="checkbox"
-                                    value={
-                                        empStatus[emp.id]?.selected || ""
-                                    }
+                                    value={empStatus[emp.id]?.selected || ""}
                                     onChange={(e) =>
                                         handleInputChange(
                                             emp.id,
                                             "selected",
-                                            e.target.value
+                                            e.target.checked
                                         )
                                     }
                                 />

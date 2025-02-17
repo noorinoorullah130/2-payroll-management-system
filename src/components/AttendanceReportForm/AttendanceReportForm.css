@@ -3,7 +3,7 @@
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid gray;
-    padding-bottom: 1rem;
+    padding-bottom: 1.5rem;
 }
 
 .header-input-group {
@@ -11,6 +11,7 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
+    position: relative;
 }
 
 .header-input-group label {
@@ -23,6 +24,15 @@
     outline: none;
 }
 
+.header-input-group .error-msg {
+    position: absolute;
+    top: 2.5rem;
+    right: 2rem;
+    font-size: 14px;
+    font-weight: bold;
+    color: red;
+}
+
 ::placeholder {
     font-size: 16px;
 }
@@ -30,6 +40,7 @@
 .report-header .btns {
     display: flex;
     gap: 5px;
+    position: relative;
 }
 
 .report-header button {
@@ -44,12 +55,22 @@
     transition: all 0.3s;
 }
 
-.report-header button:last-child {
+.report-header button:nth-child(2) {
     background-color: #e73942;
 }
 
 .report-header button:hover {
     opacity: 0.8;
+}
+
+.report-header .btns .error-msg {
+    position: absolute;
+    top: 2.5rem;
+    right: -3rem;
+    left: -3rem;
+    font-size: 14px;
+    font-weight: bold;
+    color: red;
 }
 
 table {
@@ -66,4 +87,3 @@ table input {
     border: none;
     outline: none;
 }
-
