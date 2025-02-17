@@ -1,6 +1,6 @@
 import React from "react";
 
-const SuccessPopUp = () => {
+const SuccessPopUp = ({message}) => {
     return (
         <div className="SuccessMsg">
             {message}

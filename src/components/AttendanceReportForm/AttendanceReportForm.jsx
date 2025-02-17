@@ -6,12 +6,12 @@ const AttendanceReportForm = () => {
     const [employees, setEmployees] = useState([]);
     const [empStatus, setEmpStatus] = useState({});
     const navigate = useNavigate();
-    const [saveAttendance, setSaveAttendance] = useState("");
     const [month, setMonth] = useState("");
     const [year, setYear] = useState("");
     const [errorMonthMsg, setErrorMonthMsg] = useState(false);
     const [errorYearMsg, setErrorYearMsg] = useState(false);
     const [errorSelectedEmpMsg, setErrorSeletedEmpMsg] = useState(false);
+    const [attendanceReports, setAttendanceReports] = useState([]);
 
     useEffect(() => {
         const storedEmployees =
@@ -64,7 +64,47 @@ const AttendanceReportForm = () => {
             console.log(month, year);
             console.log(empStatus);
             console.log(isAnyEmployeeSelected);
+
+            const selectedEmployees = getSelectedEmployees();
+            console.log(selectedEmployees);
+
+            const attendanceReportData = {
+                month,
+                year,
+                selectedEmployees,
+            };
+
+            console.log(attendanceReportData);
+
+            setAttendanceReports(attendanceReportData);
+
+            localStorage.setItem(
+                "attendanceReports",
+                JSON.stringify(attendanceReports)
+            );
+
+            navigate("/attendancereport");
         }
+    };
+
+    const getSelectedEmployees = () => {
+        return Object.entries(empStatus)
+            .filter(([id, status]) => status.selected)
+            .map(([id, status]) => {
+                const employee = employees.find((emp) => emp.id === id);
+
+                return {
+                    id,
+                    name: employee?.name,
+                    fatherName: employee?.fName,
+                    accountNumber: employee?.account,
+                    jobTitle: employee?.jobTitle,
+                    grade: employee?.grade,
+                    presentDays: status.presentDays,
+                    absentDays: status.absentDays,
+                    considerations: status.considerations,
+                };
+            });
     };
 
     return (
