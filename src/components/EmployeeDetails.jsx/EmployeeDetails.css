@@ -39,7 +39,7 @@
 .container .employee-information {
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
     margin-top: 3rem;
     padding: 0 5rem;
 }
@@ -54,4 +54,3 @@
     width: 450px;
     height: 450px;
 }
-

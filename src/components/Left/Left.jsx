@@ -2,18 +2,13 @@ import "./Left.css";
 import dashboardImg from "../../assets/dashboard-square-1.svg";
 import employeeList from "../../assets/list-solid.svg";
 import { Link, useLocation } from "react-router-dom";
-import { useState } from "react";
 
 function Left() {
-    
     const location = useLocation();
 
     return (
         <div className="left">
-            <Link
-                className={location.pathname === "/" ? "active" : ""}
-                to="/"
-            >
+            <Link className={location.pathname === "/" ? "active" : ""} to="/">
                 <div className="tab">
                     <img src={dashboardImg} />
                     Dashboard
@@ -29,7 +24,9 @@ function Left() {
                 </div>
             </Link>
             <Link
-                className={location.pathname === "/attendancereport" ? "active" : ""}
+                className={
+                    location.pathname === "/attendancereport" ? "active" : ""
+                }
                 to="/attendancereport"
             >
                 <div className="tab">

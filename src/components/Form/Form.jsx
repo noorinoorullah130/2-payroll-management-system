@@ -18,6 +18,7 @@ const Form = ({ setEmployees, selectedEmployee, isEditing, setIsEditing }) => {
             setJobTitle(selectedEmployee.jobTitle);
             setGrade(selectedEmployee.grade);
             setAccount(selectedEmployee.account);
+            setImage(selectedEmployee.image);
         }
     }, [isEditing, selectedEmployee]);
 
@@ -32,6 +33,7 @@ const Form = ({ setEmployees, selectedEmployee, isEditing, setIsEditing }) => {
             grade,
             account,
             image,
+            saveDate: new Date(),
         };
 
         let storedEmployees =
@@ -59,27 +61,27 @@ const Form = ({ setEmployees, selectedEmployee, isEditing, setIsEditing }) => {
         setGrade("");
         setAccount("");
         setImage(null);
-        
+
         handleSuccessMsg();
     };
 
     const handleUploadImage = (e) => {
         const file = e.target.files[0];
-        if(file) {
+        if (file) {
             const reader = new FileReader();
             reader.readAsDataURL(file);
             reader.onloadend = () => {
                 setImage(reader.result);
-            }
+            };
         }
-    }
+    };
 
     const handleSuccessMsg = () => {
         setShowSuccessMsg(true);
         setTimeout(() => {
             setShowSuccessMsg(false);
         }, 3000);
-    }
+    };
 
     return (
         <div className="addNewEmployee">
@@ -148,9 +150,7 @@ const Form = ({ setEmployees, selectedEmployee, isEditing, setIsEditing }) => {
                 <button type="submit">Add Employee</button>
             </form>
 
-            {
-                showSuccessMsg && <SuccessPopUp message="Successfully Added!" />
-            }
+            {showSuccessMsg && <SuccessPopUp message="Successfully Added!" />}
         </div>
     );
 };

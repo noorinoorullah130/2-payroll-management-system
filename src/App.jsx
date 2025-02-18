@@ -12,28 +12,26 @@ import EmployeeDetails from "./components/EmployeeDetails.jsx/EmployeeDetails.js
 function App() {
     return (
         <div>
-            <BrowserRouter>
-                <Header />
-                <Left />
-                <Routes>
-                    <Route path="/" element={<Dashboard />} />
-                    <Route path="/employee" element={<EmployeeList />} />
-                    <Route
-                        path="/attendancereport"
-                        element={<AttendanceReport />}
-                    />
-                    <Route path="/m41report" element={<M41Report />} />
-                    <Route path="/bankreport" element={<BankReport />} />
-                    <Route
-                        path="/attendancereportform"
-                        element={<AttendanceReportForm />}
-                    />
-                    <Route
-                        path="/employeedetails"
-                        element={<EmployeeDetails />}
-                    />
-                </Routes>
-            </BrowserRouter>
+            <Header />
+            <Left />
+            <Routes>
+                <Route path="/" element={<Dashboard />} />
+                <Route path="/employee" element={<EmployeeList />} />
+                <Route
+                    path="/attendancereport"
+                    element={<AttendanceReport />}
+                />
+                <Route path="/m41report" element={<M41Report />} />
+                <Route path="/bankreport" element={<BankReport />} />
+                <Route
+                    path="/attendancereportform"
+                    element={<AttendanceReportForm />}
+                />
+                <Route
+                    path="/employeedetails/:id"
+                    element={<EmployeeDetails />}
+                />
+            </Routes>
         </div>
     );
 }

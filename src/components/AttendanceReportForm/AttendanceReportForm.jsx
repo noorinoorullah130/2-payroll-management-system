@@ -91,7 +91,9 @@ const AttendanceReportForm = () => {
         return Object.entries(empStatus)
             .filter(([id, status]) => status.selected)
             .map(([id, status]) => {
-                const employee = employees.find((emp) => emp.id === parseInt(id));
+                const employee = employees.find(
+                    (emp) => emp.id === parseInt(id)
+                );
 
                 return {
                     id,

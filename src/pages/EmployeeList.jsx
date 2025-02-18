@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./CSS/Employee.css";
 import Form from "../components/Form/Form";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const EmployeeList = () => {
     const [employees, setEmployees] = useState([]);
@@ -42,10 +42,7 @@ const EmployeeList = () => {
                     <button onClick={() => toggleForm()}>
                         {showForm ? "Employee List" : "Add New Employee"}
                     </button>
-                    <button
-                        onClick={() => navigate("/attendancereportform")}
-                        nav
-                    >
+                    <button onClick={() => navigate("/attendancereportform")}>
                         Generate Attendance Report
                     </button>
                 </div>
@@ -83,13 +80,11 @@ const EmployeeList = () => {
                                         <td>{emp.jobTitle}</td>
                                         <td>{emp.grade}</td>
                                         <td className="action-btns">
-                                            <button
-                                                onClick={() =>
-                                                    navigate("/employeedetails")
-                                                }
+                                            <Link
+                                                to={`/employeedetails/${emp.id}`}
                                             >
-                                                View
-                                            </button>
+                                                <button>View</button>
+                                            </Link>
                                             <button
                                                 onClick={() => handleEdit(emp)}
                                             >
