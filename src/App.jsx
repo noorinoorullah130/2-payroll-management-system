@@ -11,8 +11,8 @@ import AttendanceReportForm from "./components/AttendanceReportForm/AttendanceRe
 function App() {
     return (
         <div>
-            <Header />
             <BrowserRouter>
+                <Header />  
                 <Left />
                 <Routes>
                     <Route path="/" element={<Dashboard />} />
@@ -23,7 +23,10 @@ function App() {
                     />
                     <Route path="/m41report" element={<M41Report />} />
                     <Route path="/bankreport" element={<BankReport />} />
-                    <Route path="/attendancereportform" element={<AttendanceReportForm />} />
+                    <Route
+                        path="/attendancereportform"
+                        element={<AttendanceReportForm />}
+                    />
                 </Routes>
             </BrowserRouter>
         </div>

@@ -1,21 +1,17 @@
 import "./Left.css";
 import dashboardImg from "../../assets/dashboard-square-1.svg";
 import employeeList from "../../assets/list-solid.svg";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 
 function Left() {
-    const [activeTab, setActiveTab] = useState("dashboard");
-
-    function handleTabClick(tab) {
-        setActiveTab(tab);
-    }
+    
+    const location = useLocation();
 
     return (
         <div className="left">
             <Link
-                onClick={() => handleTabClick("dashboard")}
-                className={activeTab === "dashboard" ? "active" : ""}
+                className={location.pathname === "/" ? "active" : ""}
                 to="/"
             >
                 <div className="tab">
@@ -24,8 +20,7 @@ function Left() {
                 </div>
             </Link>
             <Link
-                onClick={() => handleTabClick("employee")}
-                className={activeTab === "employee" ? "active" : ""}
+                className={location.pathname === "/employee" ? "active" : ""}
                 to="/employee"
             >
                 <div className="tab">
@@ -34,8 +29,7 @@ function Left() {
                 </div>
             </Link>
             <Link
-                onClick={() => handleTabClick("attendancereport")}
-                className={activeTab === "attendancereport" ? "active" : ""}
+                className={location.pathname === "/attendancereport" ? "active" : ""}
                 to="/attendancereport"
             >
                 <div className="tab">
@@ -44,8 +38,7 @@ function Left() {
                 </div>
             </Link>
             <Link
-                onClick={() => handleTabClick("m41report")}
-                className={activeTab === "m41report" ? "active" : ""}
+                className={location.pathname === "/m41report" ? "active" : ""}
                 to="/m41report"
             >
                 <div className="tab">
@@ -54,8 +47,7 @@ function Left() {
                 </div>
             </Link>
             <Link
-                onClick={() => handleTabClick("bankreport")}
-                className={activeTab === "bankreport" ? "active" : ""}
+                className={location.pathname === "/bankreport" ? "active" : ""}
                 to="/bankreport"
             >
                 <div className="tab">

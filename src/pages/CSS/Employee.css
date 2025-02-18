@@ -45,6 +45,7 @@ th {
 
 .action-btns button {
     padding: 5px 10px;
+    margin: 0 4px;
     background-color: #f14141;
     color: white;
     border: none;
@@ -60,7 +61,10 @@ th {
 }
 
 .action-btns button:first-child {
-    margin-right: 10px;
+    background-color: #3e97ff;
+}
+
+.action-btns button:nth-child(2) {
     background-color: #238636;
 }
 

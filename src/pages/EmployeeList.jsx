@@ -85,6 +85,7 @@ const Employee = () => {
                                         <td>{emp.jobTitle}</td>
                                         <td>{emp.grade}</td>
                                         <td className="action-btns">
+                                            <button>View</button>
                                             <button
                                                 onClick={() => handleEdit(emp)}
                                             >
