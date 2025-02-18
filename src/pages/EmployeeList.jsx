@@ -3,9 +3,7 @@ import "./CSS/Employee.css";
 import Form from "../components/Form/Form";
 import { useNavigate } from "react-router-dom";
 
-const Employee = () => {
-    let id = 1;
-
+const EmployeeList = () => {
     const [employees, setEmployees] = useState([]);
     const [showForm, setShowForm] = useState(false);
     const [selectedEmployee, setSelectedEmployee] = useState(null);
@@ -85,7 +83,13 @@ const Employee = () => {
                                         <td>{emp.jobTitle}</td>
                                         <td>{emp.grade}</td>
                                         <td className="action-btns">
-                                            <button>View</button>
+                                            <button
+                                                onClick={() =>
+                                                    navigate("/employeedetails")
+                                                }
+                                            >
+                                                View
+                                            </button>
                                             <button
                                                 onClick={() => handleEdit(emp)}
                                             >
@@ -114,4 +118,4 @@ const Employee = () => {
     );
 };
 
-export default Employee;
+export default EmployeeList;

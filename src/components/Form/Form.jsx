@@ -8,6 +8,7 @@ const Form = ({ setEmployees, selectedEmployee, isEditing, setIsEditing }) => {
     const [jobTitle, setJobTitle] = useState("");
     const [grade, setGrade] = useState("");
     const [account, setAccount] = useState("");
+    const [image, setImage] = useState(null);
     const [showSuccessMsg, setShowSuccessMsg] = useState(false);
 
     useEffect(() => {
@@ -30,6 +31,7 @@ const Form = ({ setEmployees, selectedEmployee, isEditing, setIsEditing }) => {
             jobTitle,
             grade,
             account,
+            image,
         };
 
         let storedEmployees =
@@ -56,9 +58,21 @@ const Form = ({ setEmployees, selectedEmployee, isEditing, setIsEditing }) => {
         setJobTitle("");
         setGrade("");
         setAccount("");
+        setImage(null);
         
         handleSuccessMsg();
     };
+
+    const handleUploadImage = (e) => {
+        const file = e.target.files[0];
+        if(file) {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onloadend = () => {
+                setImage(reader.result);
+            }
+        }
+    }
 
     const handleSuccessMsg = () => {
         setShowSuccessMsg(true);
@@ -120,6 +134,14 @@ const Form = ({ setEmployees, selectedEmployee, isEditing, setIsEditing }) => {
                         value={account}
                         onChange={(e) => setAccount(e.target.value)}
                         placeholder="Enter account number"
+                        required
+                    />
+                </div>
+                <div className="input-group">
+                    <label>Upload Image:</label>
+                    <input
+                        type="file"
+                        onChange={(e) => handleUploadImage(e)}
                         required
                     />
                 </div>
