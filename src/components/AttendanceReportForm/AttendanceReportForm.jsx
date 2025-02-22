@@ -69,19 +69,18 @@ const AttendanceReportForm = () => {
             console.log(selectedEmployees);
 
             const attendanceReportData = {
+                id: new Date().getTime(),
                 month,
                 year,
                 selectedEmployees,
             };
 
-            console.log(attendanceReportData);
+            const storedReports = JSON.parse(localStorage.getItem("attendanceReports")) || [];
 
-            setAttendanceReports(attendanceReportData);
+            const updatedReports = [...storedReports, attendanceReportData];
 
-            localStorage.setItem(
-                "attendanceReports",
-                JSON.stringify(attendanceReports)
-            );
+            setAttendanceReports(updatedReports);
+            localStorage.setItem("attendanceReports", JSON.stringify(updatedReports));
 
             navigate("/attendancereport");
         }

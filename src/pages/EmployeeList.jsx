@@ -13,7 +13,14 @@ const EmployeeList = () => {
         const storedEmployees =
             JSON.parse(localStorage.getItem("employees")) || [];
         setEmployees(storedEmployees);
+        console.log(storedEmployees);
     }, []);
+    
+    useEffect(() => {
+        const storedEmployees = JSON.parse(localStorage.getItem("employees")) || [];
+        setEmployees(storedEmployees);
+        console.log(storedEmployees);
+    }, [showForm]);
 
     const toggleForm = () => {
         setShowForm(!showForm);

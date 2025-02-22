@@ -1,7 +1,7 @@
 import React from "react";
 import "./EmployeeDetails.css";
-import EmployeeImage from "../../assets/profile.jpg";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import calculateSalary from "../../utils/calculateSalary";
 
 const EmployeeDetails = () => {
     const { id } = useParams();
@@ -11,11 +11,15 @@ const EmployeeDetails = () => {
     const employee = employees.find((emp) => emp.id.toString() === id);
     console.log(employee);
 
+    const navigate = useNavigate();
+
     return (
         <div className="employee-details">
             <div className="employee-details-header">
                 <h1>Employee Details</h1>
-                <button>Back to Employee List</button>
+                <button onClick={() => navigate("/employee")}>
+                    Back to Employee List
+                </button>
             </div>
             <div className="container">
                 <h1>Employee Info</h1>
@@ -26,7 +30,7 @@ const EmployeeDetails = () => {
                         <h2>Father Name: {employee.fName}</h2>
                         <h2>Job Title: {employee.jobTitle}</h2>
                         <h2>Grade: {employee.grade}</h2>
-                        <h2>Salary: 24,125</h2>
+                        <h2>Salary: {calculateSalary(employee.grade).toLocaleString()}</h2>
                         <h2>
                             Save Date:{" "}
                             {new Date(employee.saveDate).toLocaleString()}

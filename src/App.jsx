@@ -1,4 +1,4 @@
-import { Route, Routes, BrowserRouter } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Header from "./components/Header/Header.jsx";
 import Left from "./components/Left/Left.jsx";
 import Dashboard from "./pages/Dashboard.jsx";

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./Form.css";
 import SuccessPopUp from "../SuccessPopUp/SuccessPopUp";
 
@@ -10,6 +10,8 @@ const Form = ({ setEmployees, selectedEmployee, isEditing, setIsEditing }) => {
     const [account, setAccount] = useState("");
     const [image, setImage] = useState(null);
     const [showSuccessMsg, setShowSuccessMsg] = useState(false);
+
+    const fileInputRef = useRef(null);
 
     useEffect(() => {
         if (isEditing && selectedEmployee) {
@@ -61,6 +63,10 @@ const Form = ({ setEmployees, selectedEmployee, isEditing, setIsEditing }) => {
         setGrade("");
         setAccount("");
         setImage(null);
+
+        if (fileInputRef.current) {
+            fileInputRef.current.value = "";
+        }
 
         handleSuccessMsg();
     };
@@ -143,6 +149,7 @@ const Form = ({ setEmployees, selectedEmployee, isEditing, setIsEditing }) => {
                     <label>Upload Image:</label>
                     <input
                         type="file"
+                        ref={fileInputRef}
                         onChange={(e) => handleUploadImage(e)}
                         required
                     />
