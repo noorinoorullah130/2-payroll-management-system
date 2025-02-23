@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./CSS/AttendanceReport.css";
+import { useNavigate } from "react-router-dom";
 
 const AttendanceReport = () => {
     const [attendanceReports, setAttendanceReports] = useState([]);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         const storedReports =
@@ -11,7 +14,16 @@ const AttendanceReport = () => {
         console.log(storedReports);
     }, []);
 
-    console.log(attendanceReports);
+    const storedReports =
+        JSON.parse(localStorage.getItem("attendanceReports")) || [];
+
+    const report = storedReports.find((report, id) => {
+        console.log(report);
+    });
+
+    const handleView = (id) => {
+        navigate(`/attendancereport/${id}`);
+    };
 
     return (
         <div className="attendance-report">
@@ -33,7 +45,11 @@ const AttendanceReport = () => {
                                 <td>{report.month}</td>
                                 <td>{report.year}</td>
                                 <td className="action-btns">
-                                    <button>View</button>
+                                    <button
+                                        onClick={() => handleView(report.id)}
+                                    >
+                                        View
+                                    </button>
                                     <button
                                         style={{ backgroundColor: "#f14141" }}
                                     >

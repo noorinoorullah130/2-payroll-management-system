@@ -13,6 +13,8 @@ const AttendanceReportForm = () => {
     const [errorSelectedEmpMsg, setErrorSeletedEmpMsg] = useState(false);
     const [attendanceReports, setAttendanceReports] = useState([]);
 
+    let id = 1;
+
     useEffect(() => {
         const storedEmployees =
             JSON.parse(localStorage.getItem("employees")) || [];
@@ -69,18 +71,22 @@ const AttendanceReportForm = () => {
             console.log(selectedEmployees);
 
             const attendanceReportData = {
-                id: new Date().getTime(),
+                id: id++,
                 month,
                 year,
                 selectedEmployees,
             };
 
-            const storedReports = JSON.parse(localStorage.getItem("attendanceReports")) || [];
+            const storedReports =
+                JSON.parse(localStorage.getItem("attendanceReports")) || [];
 
             const updatedReports = [...storedReports, attendanceReportData];
 
             setAttendanceReports(updatedReports);
-            localStorage.setItem("attendanceReports", JSON.stringify(updatedReports));
+            localStorage.setItem(
+                "attendanceReports",
+                JSON.stringify(updatedReports)
+            );
 
             navigate("/attendancereport");
         }
@@ -91,19 +97,21 @@ const AttendanceReportForm = () => {
             .filter(([id, status]) => status.selected)
             .map(([id, status]) => {
                 const employee = employees.find(
-                    (emp) => emp.id === parseInt(id)
+                    (emp) => String(emp.id) === String(id)
                 );
 
                 return {
                     id,
-                    name: employee?.name,
-                    fatherName: employee?.fName,
-                    accountNumber: employee?.account,
-                    jobTitle: employee?.jobTitle,
-                    grade: employee?.grade,
+                    name: employee.name,
+                    fatherName: employee.fName,
+                    accountNumber: employee.account,
+                    jobTitle: employee.jobTitle,
+                    grade: employee.grade,
                     presentDays: status.presentDays,
-                    absentDays: status.absentDays,
-                    considerations: status.considerations,
+                    absentDays: status.absentDays ? status.absentDays : ".",
+                    considerations: status.considerations
+                        ? status.considerations
+                        : ".",
                 };
             });
     };
@@ -187,6 +195,7 @@ const AttendanceReportForm = () => {
                                         )
                                     }
                                     placeholder="#"
+                                    min={0}
                                 />
                             </td>
                             <td>
@@ -201,6 +210,7 @@ const AttendanceReportForm = () => {
                                         )
                                     }
                                     placeholder="#"
+                                    min={0}
                                 />
                             </td>
                             <td>

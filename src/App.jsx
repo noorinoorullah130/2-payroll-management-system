@@ -8,6 +8,7 @@ import M41Report from "./pages/M41Report.jsx";
 import BankReport from "./pages/BankReport.jsx";
 import AttendanceReportForm from "./components/AttendanceReportForm/AttendanceReportForm.jsx";
 import EmployeeDetails from "./components/EmployeeDetails.jsx/EmployeeDetails.jsx";
+import AttendanceReportDetails from "./components/AttendaceReportDetails/AttendanceReportDetails.jsx";
 
 function App() {
     return (
@@ -31,6 +32,7 @@ function App() {
                     path="/employeedetails/:id"
                     element={<EmployeeDetails />}
                 />
+                <Route path="/attendancereport/:id" element={<AttendanceReportDetails />} />
             </Routes>
         </div>
     );
