@@ -5,9 +5,36 @@
     justify-content: space-between;
 }
 
+.report-header-btns {
+    display: flex;
+    gap: 10px;
+}
+
 .footer {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
     margin-top: 2rem;
+}
+
+@media print {
+    body * {
+        visibility: hidden; /* Hide everything by default */
+    }
+
+    .report,
+    .report * {
+        visibility: visible; /* Only show the report section */
+    }
+
+    .report {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+    }
+
+    .report-header-btns {
+        display: none; /* Hide print & back buttons */
+    }
 }

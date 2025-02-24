@@ -13,8 +13,6 @@ const AttendanceReportForm = () => {
     const [errorSelectedEmpMsg, setErrorSeletedEmpMsg] = useState(false);
     const [attendanceReports, setAttendanceReports] = useState([]);
 
-    let id = 1;
-
     useEffect(() => {
         const storedEmployees =
             JSON.parse(localStorage.getItem("employees")) || [];
@@ -62,16 +60,12 @@ const AttendanceReportForm = () => {
             setErrorYearMsg(false);
             setErrorSeletedEmpMsg(false);
             setMonth("");
-            setYear("");
-            console.log(month, year);
-            console.log(empStatus);
-            console.log(isAnyEmployeeSelected);
+            setYear("");    
 
             const selectedEmployees = getSelectedEmployees();
-            console.log(selectedEmployees);
 
             const attendanceReportData = {
-                id: id++,
+                id: new Date().getTime(),
                 month,
                 year,
                 selectedEmployees,

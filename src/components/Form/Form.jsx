@@ -29,9 +29,9 @@ const Form = ({ setEmployees, selectedEmployee, isEditing, setIsEditing }) => {
 
         const updatedEmployee = {
             id: isEditing ? selectedEmployee.id : new Date(),
-            name,
-            fName,
-            jobTitle,
+            name: name.charAt(0).toUpperCase() + name.slice(1),
+            fName: fName.charAt(0).toUpperCase() + fName.slice(1),
+            jobTitle: jobTitle.charAt(0).toUpperCase() + jobTitle.slice(1),
             grade,
             account,
             image,

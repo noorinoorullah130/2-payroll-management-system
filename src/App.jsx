@@ -4,7 +4,7 @@ import Left from "./components/Left/Left.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
 import EmployeeList from "./pages/EmployeeList.jsx";
 import AttendanceReport from "./pages/AttendanceReport.jsx";
-import M41Report from "./pages/M41Report.jsx";
+import M41Report from "./pages/m41Report.jsx";
 import BankReport from "./pages/BankReport.jsx";
 import AttendanceReportForm from "./components/AttendanceReportForm/AttendanceReportForm.jsx";
 import EmployeeDetails from "./components/EmployeeDetails.jsx/EmployeeDetails.jsx";
@@ -32,7 +32,10 @@ function App() {
                     path="/employeedetails/:id"
                     element={<EmployeeDetails />}
                 />
-                <Route path="/attendancereport/:id" element={<AttendanceReportDetails />} />
+                <Route
+                    path="/attendancereport/:id"
+                    element={<AttendanceReportDetails />}
+                />
             </Routes>
         </div>
     );

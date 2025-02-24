@@ -31,7 +31,8 @@ a {
 .addNewEmployee,
 .attendance-report-form,
 .employee-details,
-.attendance-report-details {
+.attendance-report-details,
+.m41-report-details {
     width: 80%;
     margin-left: 18%;
     margin-top: 5%;
@@ -45,7 +46,8 @@ a {
 .bank-report h1,
 .addNewEmployee h1,
 .employee-details h1,
-.attendance-report-details h1 {
+.attendance-report-details h1,
+.m41-report-details h1 {
     font-size: 2.5rem;
 }
 

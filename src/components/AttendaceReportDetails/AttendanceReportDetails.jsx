@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "./AttendanceReportDetails.css";
 
@@ -16,18 +15,24 @@ const AttendanceReportDetails = () => {
 
     console.log(attendanceReports);
     console.log(report);
-    console.log(report.selectedEmployees);
+
+    const handlePrint = () => {
+        window.print();
+    };
 
     return (
         <div className="attendance-report-details">
             <div className="report-header">
                 <h1>Attendance Report Details</h1>
-                <button
-                    onClick={() => navigate("/attendancereport")}
-                    style={{ backgroundColor: "#238636" }}
-                >
-                    Back to Attendance Reports
-                </button>
+                <div className="report-header-btns">
+                    <button onClick={handlePrint}>Print</button>
+                    <button
+                        onClick={() => navigate("/attendancereport")}
+                        style={{ backgroundColor: "#238636" }}
+                    >
+                        Back to Attendance Reports
+                    </button>
+                </div>
             </div>
             <div className="report">
                 <div className="report-header-details">
