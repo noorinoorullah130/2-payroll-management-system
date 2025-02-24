@@ -9,6 +9,8 @@ import BankReport from "./pages/BankReport.jsx";
 import AttendanceReportForm from "./components/AttendanceReportForm/AttendanceReportForm.jsx";
 import EmployeeDetails from "./components/EmployeeDetails.jsx/EmployeeDetails.jsx";
 import AttendanceReportDetails from "./components/AttendaceReportDetails/AttendanceReportDetails.jsx";
+import M41ReportDetails from "./components/M41ReportDetails/M41ReportDetails.jsx";
+import BankReportDetails from "./components/BankReportDetails/BankReportDetails.jsx";
 
 function App() {
     return (
@@ -36,6 +38,8 @@ function App() {
                     path="/attendancereport/:id"
                     element={<AttendanceReportDetails />}
                 />
+                <Route path="/m41report/:id" element={<M41ReportDetails />} />
+                <Route path="/bankreport/:id" element={<BankReportDetails />} />
             </Routes>
         </div>
     );

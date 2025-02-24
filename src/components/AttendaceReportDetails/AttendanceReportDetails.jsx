@@ -16,6 +16,8 @@ const AttendanceReportDetails = () => {
     console.log(attendanceReports);
     console.log(report);
 
+    const employeesInSingleReport = report.selectedEmployees.length;
+
     const handlePrint = () => {
         window.print();
     };
@@ -75,8 +77,9 @@ const AttendanceReportDetails = () => {
                 </table>
                 <div className="footer">
                     <p>
-                        Above is the layout and accuracy of the attendance
-                        report
+                        Above is the layout and accuracy of the Attendance
+                        report of <strong>({employeesInSingleReport})</strong>{" "}
+                        Employees.
                     </p>
                     <h3>Please Sign Here</h3>
                 </div>
