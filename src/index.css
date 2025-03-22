@@ -10,19 +10,6 @@ a {
     color: inherit;
 }
 
-/* body {
-
-} */
-
-.main-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 80%;
-    height: 100vh;
-    margin-left: 20%;
-}
-
 .employee,
 .dashboard,
 .attendance-report,
